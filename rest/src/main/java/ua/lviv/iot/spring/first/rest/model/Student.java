@@ -15,8 +15,7 @@ import javax.persistence.NamedNativeQuery;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@NamedNativeQuery(name = "Student.findBestStudent",
-query = "select * from student where id = 1")
+@NamedNativeQuery(name = "Student.findBestStudent", query = "select * from student where id = 1")
 public class Student {
 
   private String firstName;

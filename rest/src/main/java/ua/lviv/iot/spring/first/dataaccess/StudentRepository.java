@@ -17,5 +17,4 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
   List<Student> findAllByFirstNameAndLastName(String firstName, String lastName);
 
-  Student findBestStudent();
 }

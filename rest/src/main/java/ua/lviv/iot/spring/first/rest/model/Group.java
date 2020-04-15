@@ -26,7 +26,7 @@ public class Group {
 
   @OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
   @JsonIgnoreProperties("group")
-  private Set<Student>  students;
+  private Set<Student> students;
 
   public Set<Student> getStudents() {
     return students;
