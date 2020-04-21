@@ -1,18 +1,17 @@
 package ua.lviv.iot.spring.first.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @NamedNativeQuery(name = "Student.findBestStudent", query = "select * from student where id = 1")
@@ -31,7 +30,10 @@ public class Student {
   @JsonIgnoreProperties("students")
   private Group group;
 
-  @ManyToMany(mappedBy = "students")
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "Student_Subjects", joinColumns = {
+      @JoinColumn(name = "student_id", nullable = false) }, inverseJoinColumns = {
+          @JoinColumn(name = "subject_id", nullable = false) })
   @JsonIgnoreProperties("students")
   private Set<Subject> subjects;
 
